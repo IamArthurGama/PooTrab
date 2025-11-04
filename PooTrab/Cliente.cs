@@ -7,6 +7,26 @@ using System.Threading.Tasks;
 namespace PooTrab
 {
     public class Cliente
-    {
+    {   
+        // Atributos
+        private string _nome;
+        private string _cpf;
+        private string _telefone;
+        private string _endereco;
+
+        // Props
+        public string nome => _nome;
+        public string cpf => _cpf;
+        public string telefone => _telefone;
+        public string endereco => _endereco;
+
+        // Constructor
+        public Cliente(string nome, string cpf, string telefone, string endereco)
+        {
+            _nome = nome;
+            _cpf = cpf;
+            _telefone = telefone;
+            _endereco = endereco;
+        }
     }
 }
