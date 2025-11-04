@@ -28,5 +28,7 @@ namespace PooTrab
             _telefone = telefone;
             _endereco = endereco;
         }
+
+        public string Nome { get => _nome; private set=> _nome = value; }
     }
 }
