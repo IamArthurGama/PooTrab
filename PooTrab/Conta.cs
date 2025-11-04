@@ -19,9 +19,21 @@ namespace PooTrab
         private decimal _saldo;
 
 
-        public Conta(Cliente cliente, )
+        public Conta(Cliente cliente, Banco banco, string codigoConta, decimal saldo)
         {
-
+            _cliente = cliente;
+            _banco = banco;
+            _codigoConta = codigoConta;
+            _saldo = saldo;
         }
+        public Conta(Cliente cliente, Banco banco, string codigoConta)
+        {
+            _cliente = cliente;
+            _banco = banco;
+            _codigoConta = codigoConta;
+            _saldo = 0;
+        }
+
+
     }
 }
