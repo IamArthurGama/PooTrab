@@ -68,19 +68,30 @@ namespace PooTrab
             
         }
 
-        public void Transferir()
+        public string Transferir(Conta contaEnvio,Conta contaRecebe, decimal value)
         {
-
+                contaEnvio.Sacar(value);    
+                contaRecebe.Depositar(value);
+                return $"Deposito para a conta {contaRecebe.CodigoConta} com o valor de {value} foi efetuado com sucesso, seu saldo atual é de {contaEnvio.Saldo}";
+            
         }
 
-        public void Depositar()
+        public string Depositar(decimal value)
         {
-
+            if (value > 0)
+            {
+                _saldo += value;
+                return $"O valor depositado foi de {value:C2}, seu saldo atual é de {_saldo:C2}.";
+            }
+            else
+            {
+                throw new ArgumentException("Insira um valor válido");
+            }
         }
 
-        public void VerificarSaldo()
+        public string VerificarSaldo()
         {
-
+            return $"Seu saldo atual é de {Saldo}";
         }
 
 

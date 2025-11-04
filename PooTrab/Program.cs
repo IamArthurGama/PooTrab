@@ -11,4 +11,7 @@ Console.WriteLine(cliente1.Nome);
 ContaFree conta1 = new(cliente1, banco1, "1", 5000m);
 
 Console.WriteLine(conta1.Saldo);
+Console.WriteLine(conta1.VerificarSaldo());
 Console.WriteLine(conta1.Sacar(4m));
+
+
