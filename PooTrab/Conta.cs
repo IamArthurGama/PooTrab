@@ -73,12 +73,12 @@ namespace PooTrab
             
         }
 
-        public string Transferir(Conta contaEnvio,Conta contaRecebe, decimal value)
+        public string Transferir(Conta contaRecebe, decimal value)
         {
             Verifica.VerificaDecimal(value);
-            contaEnvio.Sacar(value);    
+            this.Sacar(value);    
             contaRecebe.Depositar(value);
-            return $"Deposito para a conta {contaRecebe.CodigoConta} com o valor de {value} foi efetuado com sucesso, seu saldo atual é de {contaEnvio.Saldo}";
+            return $"Deposito para a conta {contaRecebe.CodigoConta} com o valor de {value} foi efetuado com sucesso, seu saldo atual é de {this.Saldo}";
             
         }
 
