@@ -16,6 +16,8 @@ namespace PooTrab
 
         public Conta(Cliente cliente, Banco banco, string codigoConta, decimal saldo)
         {
+            Verifica.VerificaString(codigoConta);
+            Verifica.VerificaDecimal(saldo);
             _cliente = cliente;
             _banco = banco;
             _codigoConta = codigoConta;
@@ -23,6 +25,7 @@ namespace PooTrab
         }
         public Conta(Cliente cliente, Banco banco, string codigoConta)
         {
+            Verifica.VerificaString(codigoConta);
             _cliente = cliente;
             _banco = banco;
             _codigoConta = codigoConta;
@@ -44,7 +47,7 @@ namespace PooTrab
         public string CodigoConta
         {
             get => _codigoConta;
-            set => _codigoConta = value;
+            private set => _codigoConta = value;
         }
 
         public decimal Saldo
@@ -54,7 +57,9 @@ namespace PooTrab
         }
 
         public string Sacar(decimal value)
-        {
+        {   
+            Verifica.VerificaDecimal(value);
+
             if (!(value > _saldo))
             {
                 _saldo -= value;
@@ -70,14 +75,17 @@ namespace PooTrab
 
         public string Transferir(Conta contaEnvio,Conta contaRecebe, decimal value)
         {
-                contaEnvio.Sacar(value);    
-                contaRecebe.Depositar(value);
-                return $"Deposito para a conta {contaRecebe.CodigoConta} com o valor de {value} foi efetuado com sucesso, seu saldo atual é de {contaEnvio.Saldo}";
+            Verifica.VerificaDecimal(value);
+            contaEnvio.Sacar(value);    
+            contaRecebe.Depositar(value);
+            return $"Deposito para a conta {contaRecebe.CodigoConta} com o valor de {value} foi efetuado com sucesso, seu saldo atual é de {contaEnvio.Saldo}";
             
         }
 
         public string Depositar(decimal value)
         {
+            Verifica.VerificaDecimal(value);
+
             if (value > 0)
             {
                 _saldo += value;
