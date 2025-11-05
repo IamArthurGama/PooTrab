@@ -17,5 +17,12 @@ Console.WriteLine(banco1.Nome);
 Console.WriteLine(banco1.CodigoBanco);
 Console.WriteLine(banco1.Cnpj);
 
+ContaGold conta2 = new(cliente1, banco1, "234", 500m);
+
+ContaDiamond conta3 = new(cliente1, banco1, "345", 1000m);
+
+Console.WriteLine(conta2.VerificarSaldo());
+Console.WriteLine(conta3.VerificarSaldo());
+
 
 
