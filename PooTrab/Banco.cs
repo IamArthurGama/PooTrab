@@ -24,6 +24,7 @@ namespace PooTrab
         //Construtor
         public Banco(string nome, string codigoBanco, string cnpj)
         {
+            Verifica.VerificaCodBanco(codigoBanco);
             Verifica.VerificaCnpj(cnpj);
             Verifica.VerificaString(nome);
             _nome = nome;
