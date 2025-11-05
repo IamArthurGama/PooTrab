@@ -15,10 +15,10 @@ namespace PooTrab
         private string _endereco;
 
         // Props
-        public string nome => _nome;
-        public string cpf => _cpf;
-        public string telefone => _telefone;
-        public string endereco => _endereco;
+        public string Nome => _nome;
+        public string Cpf => _cpf;
+        public string Telefone => _telefone;
+        public string Endereco => _endereco;
 
         // Constructor
         public Cliente(string nome, string cpf, string telefone, string endereco)
@@ -33,6 +33,5 @@ namespace PooTrab
             _endereco = endereco;
         }
 
-        public string Nome { get => _nome; private set=> _nome = value; }
     }
 }

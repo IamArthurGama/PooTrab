@@ -70,5 +70,21 @@ namespace PooTrab
                 }
             }
         }
+
+        public static void VerificaCodBanco(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("O código do banco não pode ser nulo ou vazio.");
+            }
+            if (value.Trim().Length != 3)// Trim retira o espaços em branco do começo e do fim da string
+            {
+                throw new ArgumentException("O código do banco deve conter exatamente 3 dígitos.");
+            }
+            if (!value.Trim().All(char.IsDigit))
+            {
+                throw new ArgumentException("O código do banco deve conter apenas números.");
+            }
+        }
     }
 }
