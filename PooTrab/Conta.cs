@@ -53,17 +53,17 @@ namespace PooTrab
         public decimal Saldo
         {
             get => _saldo;  
-            private set => _saldo = value;
+            protected set => _saldo = value;
         }
 
-        public string Sacar(decimal value)
+        public virtual string Sacar(decimal value)
         {   
             Verifica.VerificaDecimal(value);
 
-            if (!(value > _saldo))
+            if (!(value > Saldo))
             {
-                _saldo -= value;
-                return $"O valor do saque foi de: {value:C2}, O seu saldo atual é de {_saldo}";
+                Saldo -= value;
+                return $"O valor do saque foi de: {value:C2}, O seu saldo atual é de {Saldo}";
             }
             else
             {
@@ -73,7 +73,7 @@ namespace PooTrab
             
         }
 
-        public string Transferir(Conta contaRecebe, decimal value)
+        public virtual string Transferir(Conta contaRecebe, decimal value)
         {
             Verifica.VerificaDecimal(value);
             this.Sacar(value);    
@@ -88,8 +88,8 @@ namespace PooTrab
 
             if (value > 0)
             {
-                _saldo += value;
-                return $"O valor depositado foi de {value:C2}, seu saldo atual é de {_saldo:C2}.";
+                Saldo += value;
+                return $"O valor depositado foi de {value:C2}, seu saldo atual é de {Saldo:C2}.";
             }
             else
             {

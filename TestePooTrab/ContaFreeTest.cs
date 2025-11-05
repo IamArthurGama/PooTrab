@@ -23,19 +23,20 @@ public class ContaFreeTest
         Assert.AreEqual(saldoEsperado, conta1.Saldo);
 
         conta1.Sacar(50m);
-        saldoEsperado = 250;
+        saldoEsperado = 240;
         Assert.AreEqual(saldoEsperado, conta1.Saldo);
 
         conta1.Depositar(10m);
-        saldoEsperado = 260;
+        saldoEsperado = 250;
         Assert.AreEqual(saldoEsperado, conta1.Saldo);
+        Console.WriteLine($"Antes: {conta1.Saldo}");
 
         conta1.Transferir(conta2, 10m);
 
         saldoEsperado = 210;
         Assert.AreEqual(saldoEsperado, conta2.Saldo);
 
-        saldoEsperado = 250;
+        saldoEsperado = 235;
         Assert.AreEqual(saldoEsperado, conta1.Saldo);
 
     }
