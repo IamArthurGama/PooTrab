@@ -23,6 +23,10 @@ namespace PooTrab
         // Constructor
         public Cliente(string nome, string cpf, string telefone, string endereco)
         {
+            Verifica.VerificaString(nome);
+            Verifica.VerificaCpf(cpf);
+            Verifica.VerificaTelefone(telefone);
+            Verifica.VerificaString(endereco);
             _nome = nome;
             _cpf = cpf;
             _telefone = telefone;
