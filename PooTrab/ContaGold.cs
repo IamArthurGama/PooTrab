@@ -30,33 +30,33 @@ namespace PooTrab
         {
             get => _taxaTransferencia;
             private set => _taxaTransferencia = value;
-        }       
-
+        }
         public override string Sacar(decimal value)
         {
-            decimal valorTotal = value + (value * _taxaSaque);
+            Verifica.VerificaDecimal(value);
+            decimal valueTaxado = value + TaxaSaque;
 
-            if (valorTotal > Saldo)
-                throw new Exception("Saldo insuficiente.");
-
-            Saldo -= valorTotal;
-            return $"Saque de {value:C2} realizado com taxa de {_taxaSaque:P}. Saldo atual: {Saldo:C2}";
+            if (!(valueTaxado > Saldo))
+            {
+                Saldo -= valueTaxado;
+                return $"O valor do saque foi de: {value:C2} com uma taxa de {TaxaSaque:C2}. O seu saldo atual é de {Saldo}";
+            }
+            else
+            {
+                throw new ArgumentException("O valor do saque não poderá exceder o valor do saldo.");
+            }
         }
-
         public override string Transferir(Conta contaRecebe, decimal value)
         {
-            decimal valorTotal = value + (value * _taxaTransferencia);
+            Verifica.VerificaDecimal(value);
+            decimal valueTaxado = value + TaxaTransferencia;
 
-            if (valorTotal > Saldo)
-                throw new Exception("Saldo insuficiente para transferência com taxa.");
-
-            Saldo -= valorTotal;
+            Saldo -= valueTaxado;
             contaRecebe.Depositar(value);
+            return $"Deposito para a conta {contaRecebe.CodigoConta} com o valor de {value} e com uma taxa de {TaxaTransferencia} foi efetuado com sucesso, seu saldo atual é de {this.Saldo}";
 
-            return $"Transferência de {value:C2} realizada com taxa de {_taxaTransferencia:P}. " +
-                   $"Saldo atual: {Saldo:C2}";
         }
-        
+
     }
 
 }
