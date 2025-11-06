@@ -18,6 +18,5 @@ namespace PooTrab
             : base(cliente, banco, codigoConta)
         {
         }
-
     }
 }
