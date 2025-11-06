@@ -8,7 +8,6 @@ public class ContaDiamondTest
     [TestMethod]
     public void TesteDeEntradaCorreta()
     {
-
         Banco banco1 = new("Itaú", "777", "60.701.190/0001-04");
         Cliente cliente1 = new("Thales", "123.456.789-00", "21999998888", "Rua das Palmeiras, 45");
         ContaDiamond conta1 = new(cliente1, banco1, "101");
