@@ -43,8 +43,14 @@ namespace PooTrab
 
         public override string Transferir(Conta contaRecebe, decimal value)
         {
+            if (contaRecebe == null)
+                throw new ArgumentException("A conta de destino não pode ser nula.");
+            
             Verifica.VerificaDecimal(value);
             decimal valueTaxado = value + TaxaTransferencia;
+
+            if (valueTaxado > Saldo)
+                throw new ArgumentException("O valor da transferência não poderá exceder o valor do saldo.");
 
             Saldo -= valueTaxado;
             contaRecebe.Depositar(value);

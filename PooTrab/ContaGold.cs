@@ -51,6 +51,9 @@ namespace PooTrab
             Verifica.VerificaDecimal(value);
             decimal valueTaxado = value + TaxaTransferencia;
 
+            if (valueTaxado > Saldo)
+                throw new ArgumentException("O valor da transferência não poderá exceder o valor do saldo.");
+
             Saldo -= valueTaxado;
             contaRecebe.Depositar(value);
             return $"Deposito para a conta {contaRecebe.CodigoConta} com o valor de {value} e com uma taxa de {TaxaTransferencia} foi efetuado com sucesso, seu saldo atual é de {this.Saldo}";

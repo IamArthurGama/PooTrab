@@ -17,7 +17,7 @@ namespace PooTrab
         public Conta(Cliente cliente, Banco banco, string codigoConta, decimal saldo)
         {
             Verifica.VerificaString(codigoConta);
-            Verifica.VerificaDecimal(saldo);
+            Verifica.VerificaDecimalCriacao(saldo);
             _cliente = cliente;
             _banco = banco;
             _codigoConta = codigoConta;

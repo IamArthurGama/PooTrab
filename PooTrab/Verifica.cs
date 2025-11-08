@@ -15,9 +15,16 @@ namespace PooTrab
            }
         }
 
-        public static void VerificaDecimal(Decimal value)
+        public static void VerificaDecimalCriacao(decimal value)
         {
             if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException($"O valor {value} é inválido para criação da conta. O saldo inicial não pode ser negativo.");
+            }
+        }
+        public static void VerificaDecimal(Decimal value)
+        {
+            if (value <= 0)
             {
                 throw new ArgumentOutOfRangeException($"O valor {value} está invalido, ele deve ser do tipo decimal!");
             }
