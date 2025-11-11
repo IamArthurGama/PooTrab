@@ -76,7 +76,7 @@ namespace PooTrab
                 throw new ArgumentException("O telefone deve conter apenas números.");
 
             if (telLimpo.Length < 8)
-                throw new ArgumentException("O telefone deve conter pelo mais que 8 dígitos.");
+                throw new ArgumentException("O telefone deve conter pelo menos 8 dígitos.");
         }
 
         public static void VerificaCodBanco(string value)

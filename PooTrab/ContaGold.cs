@@ -48,6 +48,11 @@ namespace PooTrab
         }
         public override string Transferir(Conta contaRecebe, decimal value)
         {
+
+            if(contaRecebe== null)
+            {
+                throw new ArgumentException("A conta para a qual deseja transferir não pode ser nula.");
+            }
             Verifica.VerificaDecimal(value);
             decimal valueTaxado = value + TaxaTransferencia;
 

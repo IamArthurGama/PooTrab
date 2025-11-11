@@ -75,6 +75,10 @@ namespace PooTrab
 
         public virtual string Transferir(Conta contaRecebe, decimal value)
         {
+            if(contaRecebe== null)
+            {
+                throw new ArgumentException("A conta para a qual deseja transferir não pode ser nula.");
+            }
             Verifica.VerificaDecimal(value);
             this.Sacar(value);    
             contaRecebe.Depositar(value);
