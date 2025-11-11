@@ -10,7 +10,7 @@ namespace PooTrab
     {
         public static void VerificaString(string value)
         {
-           if (string.IsNullOrEmpty(value)) {
+           if (string.IsNullOrWhiteSpace(value)) {
                 throw new ArgumentException($"O valor {value} está invalido, ele deve ser do tipo string!");
            }
         }
@@ -58,6 +58,9 @@ namespace PooTrab
             {
                 throw new ArgumentException("O CNPJ deve conter 14 dígitos.");
             }
+
+            if (!cnpjLimpo.All(char.IsDigit))// o ALL pega toda a string, que no caso é o cnpjLimpo, o char quebra a string e caracteres e o IsDigit verifica se é número
+                throw new ArgumentException("O CNPJ deve conter apenas números.");
         }
 
         public static void VerificaTelefone(string value)
@@ -69,13 +72,11 @@ namespace PooTrab
 
             string telLimpo = value.Trim().Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
 
-            foreach (char c in telLimpo)
-            {
-                if (!char.IsDigit(c))
-                {
-                    throw new ArgumentException("O telefone deve conter apenas números.");
-                }
-            }
+            if (!telLimpo.All(char.IsDigit))
+                throw new ArgumentException("O telefone deve conter apenas números.");
+
+            if (telLimpo.Length < 8)
+                throw new ArgumentException("O telefone deve conter pelo menos 8 dígitos.");
         }
 
         public static void VerificaCodBanco(string value)

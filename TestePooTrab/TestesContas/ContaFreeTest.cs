@@ -41,31 +41,31 @@ public class ContaFreeTest
 
     }
     [TestMethod]
-    public void testeDeEntradaIncorreta()
+    public void TesteDeEntradaIncorreta()
     {
         Banco banco = new("Nubank", "987", "86.569.122/0001-19");
-        Cliente cliente = new("Erick", "187.098.110-36", "24999215995", "Domingos José Dantas, ");
+        Cliente cliente = new("Erick", "187.098.110-36", "24999215995", "Domingos José Dantas");
         ContaFree conta = new(cliente, banco, "234", 200m);
-        ContaFree contaParaTransferencia = new(cliente, banco, "345", 100m);
+        ContaFree contaDestino = new(cliente, banco, "345", 100m);
 
-        //Constructor
-        Assert.ThrowsException<ArgumentException>(() => new ContaFree(cliente, banco, null, 100m)); // cod conta nulo
-        Assert.ThrowsException<ArgumentException>(() => new ContaFree(cliente, banco, "", 100m)); // cod conta vazio
+        //Constructor inválido
+        Assert.ThrowsException<ArgumentException>(() => new ContaFree(cliente, banco, null, 100m));   // código da conta nulo
+        Assert.ThrowsException<ArgumentException>(() => new ContaFree(cliente, banco, "", 100m));     // código da conta vazio
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => new ContaFree(cliente, banco, "303", -50m)); // saldo negativo na criação
 
-        //Saque
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Sacar(-30m)); // saque negativo
-        Assert.ThrowsException<ArgumentException>(() => conta.Sacar(196m)); // saque maior que saldo
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Sacar(0m)); // saque zero
+        //Saque inválido
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Sacar(-30m));  // saque negativo
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Sacar(0m));    // saque zero
+        Assert.ThrowsException<ArgumentException>(() => conta.Sacar(196m));            // saque maior que saldo (196 + 10 = 206)
 
-        //Deposito
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Depositar(-20m)); // deposito negativo
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Depositar(0m)); // deposito zero
+        //Deposito inválido
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Depositar(-20m)); // depósito negativo
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Depositar(0m));   // depósito zero
 
-        //Transferencia
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Transferir(contaParaTransferencia, -100m)); // transferencia negativa
-        Assert.ThrowsException<ArgumentException>(() => conta.Transferir(contaParaTransferencia, 196m)); // transferencia maior que saldo
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Transferir(contaParaTransferencia, 0m)); // transferencia zero
-        Assert.ThrowsException<ArgumentException>(() => conta.Transferir(null, 50m)); // transferencia para conta nula
+        //Trasferência inválida
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Transferir(contaDestino, -100m)); // transferência negativa
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => conta.Transferir(contaDestino, 0m));     // transferência zero
+        Assert.ThrowsException<ArgumentException>(() => conta.Transferir(contaDestino, 196m));            // maior que saldo (196 + 5 = 201)
+        Assert.ThrowsException<ArgumentException>(() => conta.Transferir(null, 50m));                     // conta destino nula
     }
 }
