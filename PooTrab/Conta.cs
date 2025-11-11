@@ -99,7 +99,7 @@ namespace PooTrab
 
         public string VerificarSaldo()
         {
-            return $"Seu saldo atual é de {Saldo}";
+            return $"Seu saldo atual é de {Saldo:C2}.";
         }
 
 
