@@ -53,13 +53,12 @@ namespace PooTrab
 
             string cnpjLimpo = value.Trim().Replace(".", "").Replace("-", "").Replace("/", "");
 
-            // 3. Verifica o tamanho
             if (cnpjLimpo.Length != 14)
             {
                 throw new ArgumentException("O CNPJ deve conter 14 dígitos.");
             }
 
-            if (!cnpjLimpo.All(char.IsDigit))// o ALL pega toda a string, que no caso é o cnpjLimpo, o char quebra a string e caracteres e o IsDigit verifica se é número
+            if (!cnpjLimpo.All(char.IsDigit))
                 throw new ArgumentException("O CNPJ deve conter apenas números.");
         }
 
@@ -85,7 +84,7 @@ namespace PooTrab
             {
                 throw new ArgumentException("O código do banco não pode ser nulo ou vazio.");
             }
-            if (value.Trim().Length != 3)// Trim retira o espaços em branco do começo e do fim da string
+            if (value.Trim().Length != 3)
             {
                 throw new ArgumentException("O código do banco deve conter exatamente 3 dígitos.");
             }
